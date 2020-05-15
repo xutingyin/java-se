@@ -1,7 +1,7 @@
 package cn.xutingyin.reflection;
 
 /**
- * @description: 反射，是为了解决在运行期，对某个实例一无所知的情况下，如何调用其方法。
+ * @description: 反射测试类
  * @author: Tingyin.Xu
  * @date: 2020/5/15 9:11
  */
