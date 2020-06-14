@@ -11,4 +11,4 @@ Error 简单的理解为JVM直接报的错，非常严重，直接影响系统�
 
 OutOfMemoryError、StackOverflowError
 
-![](../images/java-se-015.png)
+![](../../images/java-se-015.png)

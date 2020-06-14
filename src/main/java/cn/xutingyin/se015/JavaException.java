@@ -1,5 +1,7 @@
 package cn.xutingyin.se015;
 
+import java.util.concurrent.ConcurrentLinkedQueue;
+
 /**
  * @description: Java中的异常
  * @author: Tingyin.Xu
@@ -8,4 +10,9 @@ package cn.xutingyin.se015;
  **/
 public class JavaException {
 
+    public static void main(String[] args) {
+        ConcurrentLinkedQueue queue = new ConcurrentLinkedQueue();
+        queue.add(1);
+
+    }
 }
