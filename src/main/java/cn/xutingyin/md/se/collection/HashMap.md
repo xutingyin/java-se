@@ -1,5 +1,6 @@
 # HashMap 源码分析
 前言：使用的JDK1.8
+参考：HashMap 常见面试问题:https://zhuanlan.zhihu.com/p/163283988
 ## 属性
 ```shell
 /**
