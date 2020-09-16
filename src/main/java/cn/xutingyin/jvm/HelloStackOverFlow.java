@@ -1,6 +1,9 @@
 package cn.xutingyin.jvm;
 
 public class HelloStackOverFlow {
+/**
+ *  static 修饰的变量存放在栈中
+ */
     private static int counter;
 
     public void count() {
