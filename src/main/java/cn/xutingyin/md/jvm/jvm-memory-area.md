@@ -75,6 +75,69 @@
 ```
 ![](../../images/jvm-refrence-heap.png)
 
-###方法区 - 存储类、方法、字段等定义（元）数据
+常使用参数：
 
+      1. 设置堆空间大小的参数
+         -Xms 用来设置堆空间（年轻代+老年代）的初始内存大小
+         -Xmx 用来设置堆空间（年轻代+老年代）的最大内存大小
+     
+      2. 默认堆空间的大小
+         初始内存大小：物理电脑内存大小 / 64
+         最大内存大小：物理电脑内存大小 / 4
+     
+      3. 年轻代与老年代的占用比例:
+         a. 年轻代固定占用1/3
+         b. 老年代固定占用2/3
+     
+      4. 手动设置：-Xms1g(m) -Xmx1g(m)
+         a.开发中建议将初始堆内存和最大的堆内存设置成相同的值。
+         b.Java整个堆大小设置建议，Xmx 和 Xms设置为老年代FullGC后存活对象的3-4倍
+         
+      5、-XX：+PrintGCDetails  # 打印设置的GC参数
+
+可视化分析工具：**visualVM**
+
+#### 堆结构
+    YGC(Young Generation Space):新生代，包括Eden、Survivor-0,Survivor-1
+    Tenure Generation Space :老年代
+GC日志分析：
+
+###方法区 - 存储类、方法、字段等定义（元）数据
+在《Java虚拟机规范》中说明了方法区是堆的一个逻辑部分，但在实现中，与内存无关，所以它有个名字-"非堆Non-heap"
+永久代(Permanent)是JDK7(含)之前的方法区实现
+    特点：
+```yaml
+      占用JVM内存保存数据，-XX:MaxPermSize有上限，容易内存溢出，且与其它JVM(JRocket,J9)实现不一致
+```
+元空间(MetaSpace)是JDK8之后的方法区实现
+    特点：
+```yaml
+      使用本地内存(Native Memory)保存数据，最大为可用物理内存，与其它JVM保存一致。
+```
+
+设置元空间：
+-XX:MetaspaceSize=xxx(M|G)
+```yaml
+     .设置源空间初始值，默认大小与平台相关(12mb-20mb),到达进行调整，并自动触发Full GC.
+     .设置建议：一般设置为一个较大的值，减少Full GC
+```
+-XX:MaxMetaspaceSize=xxx(M|G)
+    .设置元空间的最大值，默认为：-1,表示为最大可用物理内存，一般不设置最大值
+    .超过最大值，系统则会抛出OutOfMemoryError:Metaspace
+    
+方法区的历史变化：
+```yaml
+    jdk1.6及之前： 有永久代、静态变量存放在永久代中。
+    jdk1.7     :  有永久代、但已 “逐步去除永久代”，字符串常量，静态变量移除，存放在堆中
+    jdk1.8及之后：  无永久代，类型信息、字段、方法、常量保存到本地内存的元空间，但字符串常量池、静态变量任然存储在堆中  
+```   
+![](../../images/jvm-method-area-jdk1.6.png)
+![](../../images/jvm-method-area-jdk1.7.png)
+![](../../images/jvm-method-area-jdk1.8.png)
+![](../../images/jvm-new-object-heap.png)        
 ###运行时常量区 - 保存常量 static 数据
+```yaml
+    1、保存Class中的常量数据
+    2、符号引用转换为直接引用[即对象指针]
+    3、运行中动态产生的常量
+```
