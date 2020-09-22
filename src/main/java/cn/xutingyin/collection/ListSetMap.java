@@ -44,6 +44,12 @@ public class ListSetMap {
         // set 转 list
         List list = new ArrayList(set);
         // set 转 map
+        Map<Long, User> map = new HashMap<>(16);
+        Iterator<User> iterator = set.iterator();
+        while (iterator.hasNext()) {
+            User user = iterator.next();
+            map.put(user.getId(), user);
+        }
 
     }
 
