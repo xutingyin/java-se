@@ -92,11 +92,11 @@ java -XX:+PrintGCDetails 不稳定参数，不同JVM有差异，随时可能被�
 ![](../../images/jvm-gc-jstat-param.png)
 
 ## 实际生产OOM问题定位
-1、jps
-2、jinfo、jstat辅助命令
-3、arthas-阿里巴巴提供的Java诊断工具-可以实时的分析各个内存空间的分配情况
-4、生成dump 文件
-5、利用 visualVM本地离线分析具体每个对象的内存分配情况，定位到出问题的代码。
+    1、jps
+    2、jinfo、jstat辅助命令
+    3、arthas-阿里巴巴提供的Java诊断工具-可以实时的分析各个内存空间的分配情况
+    4、生成dump 文件
+    5、利用 visualVM本地离线分析具体每个对象的内存分配情况，定位到出问题的代码。
 
 
 
