@@ -22,6 +22,8 @@ public class ListSetMap {
         Set sets = new HashSet(map.values());
         // map 转 list
         List arrayList = new ArrayList(map.values());
+
+
     }
 
     public static void listConvertBeforeJdk8() {
@@ -54,6 +56,18 @@ public class ListSetMap {
     }
 
     // -----------------------------JDK8之后---------------------------------
+    public static void mapConvertAfterJdk8(){
+        Map<String, String> map = new HashMap<>();
+        map.put("1", "test1");
+        map.put("2", "test2");
+//        map 转set
+        Set<Map.Entry<String, String>> set = map.entrySet().stream().collect(Collectors.toSet());
+        System.out.println(set);
+
+        List<String> list = map.values().stream().collect(Collectors.toList());
+        System.out.println(list);
+//        map 转 list
+    }
     public static void listConvertAfterJdk8() {
         List<User> list = new ArrayList(16);
         list.add(new User(1L, "susan", 20));
@@ -68,13 +82,13 @@ public class ListSetMap {
         Set<User> set = new HashSet(16);
         set.add(new User(1L, "susan", 20));
         set.add(new User(2L, "lisa", 20));
-        // list 转 map
+        // set 转 map
         Map<Long, User> maps = set.stream().collect(Collectors.toMap(User::getId, Function.identity()));
-        // list 转 set
+        // set 转 set
         List<User> list = set.stream().collect(Collectors.toList());
     }
 
     public static void main(String[] args) {
-        listConvertAfterJdk8();
+        mapConvertAfterJdk8();
     }
 }
