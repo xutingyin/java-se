@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * @description: 用户对象
- * @author: xuty
+ * @author: TingYin.Xu
  * @date: 2020/9/22 9:14
  */
 
